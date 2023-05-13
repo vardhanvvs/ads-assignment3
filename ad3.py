@@ -247,7 +247,7 @@ param, covar = opt.curve_fit(logistic, new_ele_p_cap["Year"],
 
 sigma = np.sqrt(np.diag(covar))
 
-year = np.arange(1990, 2015)
+year = np.arange(1990, 2020)
 forecast = logistic(year, *param)
 low, up = err.err_ranges(year, logistic, param, sigma)
 new_ele_p_cap["fit"] = logistic(new_ele_p_cap["Year"], *param)
@@ -281,13 +281,13 @@ plt.title('electricity per capita forecast for Finland')
 plt.savefig('us.png',bbox_inches='tight',dpi=300)
 plt.show()
 
-print(logistic(2020, *param)/1e9)
-print(err.err_ranges(2020, logistic, param, sigma))
+print(logistic(2025, *param)/1e9)
+print(err.err_ranges(2025, logistic, param, sigma))
 
 # assuming symmetrie estimate sigma
-gdp2020 = logistic(2020, *param)/1e9
+gdp2025 = logistic(2025, *param)/1e9
 
-low, up = err.err_ranges(2020, logistic, param, sigma)
+low, up = err.err_ranges(2025, logistic, param, sigma)
 sig = np.abs(up-low)/(2.0 * 1e9)
 
-print("ele_per_cap 2020", gdp2020*1e9, "+/-", sig)
+print("ele_per_cap 2020", gdp2025*1e9, "+/-", sig)
