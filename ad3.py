@@ -247,14 +247,14 @@ param, covar = opt.curve_fit(logistic, new_ele_p_cap["Year"],
 
 sigma = np.sqrt(np.diag(covar))
 
-year = np.arange(1990, 2035)
+year = np.arange(1990, 2015)
 forecast = logistic(year, *param)
 low, up = err.err_ranges(year, logistic, param, sigma)
 new_ele_p_cap["fit"] = logistic(new_ele_p_cap["Year"], *param)
 
 new_ele_p_cap.plot("Year", ["ele_per_cap", "fit"])
-plt.fill_between(year,low,forecast,color="yellow",alpha=0.7)
-plt.fill_between(year,up,forecast,color="yellow",alpha=0.7)
+plt.fill_between(year,low,forecast,color="skyblue",alpha=0.7)
+plt.fill_between(year,up,forecast,color="skyblue",alpha=0.7)
 plt.ylabel('electricity in kwh')
 plt.title('Electricity per individual in kwh')
 plt.show()
@@ -265,7 +265,7 @@ print("rate of growth", param[1], "+/-", sigma[1])
 
 
 
-year = np.arange(1960, 2035)
+year = np.arange(1960, 2025)
 forecast = logistic(year, *param)
 low, up = err.err_ranges(year, logistic, param, sigma)
 plt.figure()
